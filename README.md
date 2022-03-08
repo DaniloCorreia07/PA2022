@@ -1,0 +1,2 @@
+# aulasalgoritmo2022
+aulasalgoritimo2022
