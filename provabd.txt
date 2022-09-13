@@ -1,0 +1,842 @@
+Avaliação de BD - 13/09
+Danilo Correia Reis da Silva / 1 ano C (turma B)
+
+2)
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classicmodels      |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]>
+
+4)
+MariaDB [classicmodels]> show tables;
++-------------------------+
+| Tables_in_classicmodels |
++-------------------------+
+| customers               |
+| employees               |
+| offices                 |
+| orderdetails            |
+| orders                  |
+| payments                |
+| productlines            |
+| products                |
++-------------------------+
+8 rows in set (0.039 sec)
+
+MariaDB [classicmodels]>
+
+5)
+MariaDB [classicmodels]> describe customers;
++------------------------+-------------+------+-----+---------+-------+
+| Field                  | Type        | Null | Key | Default | Extra |
++------------------------+-------------+------+-----+---------+-------+
+| customerNumber         | int(11)     | NO   | PRI | NULL    |       |
+| customerName           | varchar(50) | NO   |     | NULL    |       |
+| contactLastName        | varchar(50) | NO   |     | NULL    |       |
+| contactFirstName       | varchar(50) | NO   |     | NULL    |       |
+| phone                  | varchar(50) | NO   |     | NULL    |       |
+| addressLine1           | varchar(50) | NO   |     | NULL    |       |
+| addressLine2           | varchar(50) | YES  |     | NULL    |       |
+| city                   | varchar(50) | NO   |     | NULL    |       |
+| state                  | varchar(50) | YES  |     | NULL    |       |
+| postalCode             | varchar(15) | YES  |     | NULL    |       |
+| country                | varchar(50) | NO   |     | NULL    |       |
+| salesRepEmployeeNumber | int(11)     | YES  | MUL | NULL    |       |
+| creditLimit            | double      | YES  |     | NULL    |       |
++------------------------+-------------+------+-----+---------+-------+
+13 rows in set (0.094 sec)
+
+MariaDB [classicmodels]>
+
+
+6)
+MariaDB [classicmodels]> select customerName,city,state,country from customers;
++------------------------------------+-------------------+---------------+--------------+
+| customerName                       | city              | state         | country      |
++------------------------------------+-------------------+---------------+--------------+
+| Atelier graphique                  | Nantes            | NULL          | France       |
+| Signal Gift Stores                 | Las Vegas         | NV            | USA          |
+| Australian Collectors, Co.         | Melbourne         | Victoria      | Australia    |
+| La Rochelle Gifts                  | Nantes            | NULL          | France       |
+| Baane Mini Imports                 | Stavern           | NULL          | Norway       |
+| Mini Gifts Distributors Ltd.       | San Rafael        | CA            | USA          |
+| Havel & Zbyszek Co                 | Warszawa          | NULL          | Poland       |
+| Blauer See Auto, Co.               | Frankfurt         | NULL          | Germany      |
+| Mini Wheels Co.                    | San Francisco     | CA            | USA          |
+| Land of Toys Inc.                  | NYC               | NY            | USA          |
+| Euro+ Shopping Channel             | Madrid            | NULL          | Spain        |
+| Volvo Model Replicas, Co           | Luleå             | NULL          | Sweden       |
+| Danish Wholesale Imports           | Kobenhavn         | NULL          | Denmark      |
+| Saveley & Henriot, Co.             | Lyon              | NULL          | France       |
+| Dragon Souveniers, Ltd.            | Singapore         | NULL          | Singapore    |
+| Muscle Machine Inc                 | NYC               | NY            | USA          |
+| Diecast Classics Inc.              | Allentown         | PA            | USA          |
+| Technics Stores Inc.               | Burlingame        | CA            | USA          |
+| Handji Gifts& Co                   | Singapore         | NULL          | Singapore    |
+| Herkku Gifts                       | Bergen            | NULL          | Norway       |
+| American Souvenirs Inc             | New Haven         | CT            | USA          |
+| Porto Imports Co.                  | Lisboa            | NULL          | Portugal     |
+| Daedalus Designs Imports           | Lille             | NULL          | France       |
+| La Corne D'abondance, Co.          | Paris             | NULL          | France       |
+| Cambridge Collectables Co.         | Cambridge         | MA            | USA          |
+| Gift Depot Inc.                    | Bridgewater       | CT            | USA          |
+| Osaka Souveniers Co.               | Kita-ku           | Osaka         | Japan        |
+| Vitachrome Inc.                    | NYC               | NY            | USA          |
+| Toys of Finland, Co.               | Helsinki          | NULL          | Finland      |
+| AV Stores, Co.                     | Manchester        | NULL          | UK           |
+| Clover Collections, Co.            | Dublin            | NULL          | Ireland      |
+| Auto-Moto Classics Inc.            | Brickhaven        | MA            | USA          |
+| UK Collectables, Ltd.              | Liverpool         | NULL          | UK           |
+| Canadian Gift Exchange Network     | Vancouver         | BC            | Canada       |
+| Online Mini Collectables           | Brickhaven        | MA            | USA          |
+| Toys4GrownUps.com                  | Pasadena          | CA            | USA          |
+| Asian Shopping Network, Co         | Singapore         | NULL          | Singapore    |
+| Mini Caravy                        | Strasbourg        | NULL          | France       |
+| King Kong Collectables, Co.        | Central Hong Kong | NULL          | Hong Kong    |
+| Enaco Distributors                 | Barcelona         | NULL          | Spain        |
+| Boards & Toys Co.                  | Glendale          | CA            | USA          |
+| Natürlich Autos                    | Cunewalde         | NULL          | Germany      |
+| Heintze Collectables               | Århus             | NULL          | Denmark      |
+| Québec Home Shopping Network       | Montréal          | Québec        | Canada       |
+| ANG Resellers                      | Madrid            | NULL          | Spain        |
+| Collectable Mini Designs Co.       | San Diego         | CA            | USA          |
+| giftsbymail.co.uk                  | Cowes             | Isle of Wight | UK           |
+| Alpha Cognac                       | Toulouse          | NULL          | France       |
+| Messner Shopping Network           | Frankfurt         | NULL          | Germany      |
+| Amica Models & Co.                 | Torino            | NULL          | Italy        |
+| Lyon Souveniers                    | Paris             | NULL          | France       |
+| Auto Associés & Cie.               | Versailles        | NULL          | France       |
+| Toms Spezialitäten, Ltd            | Köln              | NULL          | Germany      |
+| Royal Canadian Collectables, Ltd.  | Tsawassen         | BC            | Canada       |
+| Franken Gifts, Co                  | München           | NULL          | Germany      |
+| Anna's Decorations, Ltd            | North Sydney      | NSW           | Australia    |
+| Rovelli Gifts                      | Bergamo           | NULL          | Italy        |
+| Souveniers And Things Co.          | Chatswood         | NSW           | Australia    |
+| Marta's Replicas Co.               | Cambridge         | MA            | USA          |
+| BG&E Collectables                  | Fribourg          | NULL          | Switzerland  |
+| Vida Sport, Ltd                    | Genève            | NULL          | Switzerland  |
+| Norway Gifts By Mail, Co.          | Oslo              | NULL          | Norway       |
+| Schuyler Imports                   | Amsterdam         | NULL          | Netherlands  |
+| Der Hund Imports                   | Berlin            | NULL          | Germany      |
+| Oulu Toy Supplies, Inc.            | Oulu              | NULL          | Finland      |
+| Petit Auto                         | Bruxelles         | NULL          | Belgium      |
+| Mini Classics                      | White Plains      | NY            | USA          |
+| Mini Creations Ltd.                | New Bedford       | MA            | USA          |
+| Corporate Gift Ideas Co.           | San Francisco     | CA            | USA          |
+| Down Under Souveniers, Inc         | Auckland          | NULL          | New Zealand  |
+| Stylish Desk Decors, Co.           | London            | NULL          | UK           |
+| Tekni Collectables Inc.            | Newark            | NJ            | USA          |
+| Australian Gift Network, Co        | South Brisbane    | Queensland    | Australia    |
+| Suominen Souveniers                | Espoo             | NULL          | Finland      |
+| Cramer Spezialitäten, Ltd          | Brandenburg       | NULL          | Germany      |
+| Classic Gift Ideas, Inc            | Philadelphia      | PA            | USA          |
+| CAF Imports                        | Madrid            | NULL          | Spain        |
+| Men 'R' US Retailers, Ltd.         | Los Angeles       | CA            | USA          |
+| Asian Treasures, Inc.              | Cork              | Co. Cork      | Ireland      |
+| Marseille Mini Autos               | Marseille         | NULL          | France       |
+| Reims Collectables                 | Reims             | NULL          | France       |
+| SAR Distributors, Co               | Hatfield          | Pretoria      | South Africa |
+| GiftsForHim.com                    | Auckland          | NULL          | New Zealand  |
+| Kommission Auto                    | Münster           | NULL          | Germany      |
+| Gifts4AllAges.com                  | Boston            | MA            | USA          |
+| Online Diecast Creations Co.       | Nashua            | NH            | USA          |
+| Lisboa Souveniers, Inc             | Lisboa            | NULL          | Portugal     |
+| Precious Collectables              | Bern              | NULL          | Switzerland  |
+| Collectables For Less Inc.         | Brickhaven        | MA            | USA          |
+| Royale Belge                       | Charleroi         | NULL          | Belgium      |
+| Salzburg Collectables              | Salzburg          | NULL          | Austria      |
+| Cruz & Sons Co.                    | Makati City       | NULL          | Philippines  |
+| L'ordine Souveniers                | Reggio Emilia     | NULL          | Italy        |
+| Tokyo Collectables, Ltd            | Minato-ku         | Tokyo         | Japan        |
+| Auto Canal+ Petit                  | Paris             | NULL          | France       |
+| Stuttgart Collectable Exchange     | Stuttgart         | NULL          | Germany      |
+| Extreme Desk Decorations, Ltd      | Wellington        | NULL          | New Zealand  |
+| Bavarian Collectables Imports, Co. | Munich            | NULL          | Germany      |
+| Classic Legends Inc.               | NYC               | NY            | USA          |
+| Feuer Online Stores, Inc           | Leipzig           | NULL          | Germany      |
+| Gift Ideas Corp.                   | Glendale          | CT            | USA          |
+| Scandinavian Gift Ideas            | Bräcke            | NULL          | Sweden       |
+| The Sharp Gifts Warehouse          | San Jose          | CA            | USA          |
+| Mini Auto Werke                    | Graz              | NULL          | Austria      |
+| Super Scale Inc.                   | New Haven         | CT            | USA          |
+| Microscale Inc.                    | NYC               | NY            | USA          |
+| Corrida Auto Replicas, Ltd         | Madrid            | NULL          | Spain        |
+| Warburg Exchange                   | Aachen            | NULL          | Germany      |
+| FunGiftIdeas.com                   | New Bedford       | MA            | USA          |
+| Anton Designs, Ltd.                | Madrid            | NULL          | Spain        |
+| Australian Collectables, Ltd       | Glen Waverly      | Victoria      | Australia    |
+| Frau da Collezione                 | Milan             | NULL          | Italy        |
+| West Coast Collectables Co.        | Burbank           | CA            | USA          |
+| Mit Vergnügen & Co.                | Mannheim          | NULL          | Germany      |
+| Kremlin Collectables, Co.          | Saint Petersburg  | NULL          | Russia       |
+| Raanan Stores, Inc                 | Herzlia           | NULL          | Israel       |
+| Iberia Gift Imports, Corp.         | Sevilla           | NULL          | Spain        |
+| Motor Mint Distributors Inc.       | Philadelphia      | PA            | USA          |
+| Signal Collectibles Ltd.           | Brisbane          | CA            | USA          |
+| Double Decker Gift Stores, Ltd     | London            | NULL          | UK           |
+| Diecast Collectables               | Boston            | MA            | USA          |
+| Kelly's Gift Shop                  | Auckland          | NULL          | New Zealand  |
++------------------------------------+-------------------+---------------+--------------+
+122 rows in set (0.001 sec)
+
+MariaDB [classicmodels]>
+7)
+MariaDB [classicmodels]> select * from customers
+    -> where country like 'usa%';
++----------------+------------------------------+-----------------+------------------+------------+---------------------------+--------------+--------
+-------+-------+------------+---------+------------------------+-------------+
+| customerNumber | customerName                 | contactLastName | contactFirstName | phone      | addressLine1              | addressLine2 | city
+       | state | postalCode | country | salesRepEmployeeNumber | creditLimit |
++----------------+------------------------------+-----------------+------------------+------------+---------------------------+--------------+--------
+-------+-------+------------+---------+------------------------+-------------+
+|            112 | Signal Gift Stores           | King            | Jean             | 7025551838 | 8489 Strong St.           | NULL         | Las Veg
+as     | NV    | 83030      | USA     |                   1166 |       71800 |
+|            124 | Mini Gifts Distributors Ltd. | Nelson          | Susan            | 4155551450 | 5677 Strong St.           | NULL         | San Raf
+ael    | CA    | 97562      | USA     |                   1165 |      210500 |
+|            129 | Mini Wheels Co.              | Murphy          | Julie            | 6505555787 | 5557 North Pendale Street | NULL         | San Fra
+ncisco | CA    | 94217      | USA     |                   1165 |       64600 |
+|            131 | Land of Toys Inc.            | Lee             | Kwai             | 2125557818 | 897 Long Airport Avenue   | NULL         | NYC
+       | NY    | 10022      | USA     |                   1323 |      114900 |
+|            151 | Muscle Machine Inc           | Young           | Jeff             | 2125557413 | 4092 Furth Circle         | Suite 400    | NYC
+       | NY    | 10022      | USA     |                   1286 |      138500 |
+|            157 | Diecast Classics Inc.        | Leong           | Kelvin           | 2155551555 | 7586 Pompton St.          | NULL         | Allento
+wn     | PA    | 70267      | USA     |                   1216 |      100600 |
+|            161 | Technics Stores Inc.         | Hashimoto       | Juri             | 6505556809 | 9408 Furth Circle         | NULL         | Burling
+ame    | CA    | 94217      | USA     |                   1165 |       84600 |
+|            168 | American Souvenirs Inc       | Franco          | Keith            | 2035557845 | 149 Spinnaker Dr.         | Suite 101    | New Hav
+en     | CT    | 97823      | USA     |                   1286 |           0 |
+|            173 | Cambridge Collectables Co.   | Tseng           | Jerry            | 6175555555 | 4658 Baden Av.            | NULL         | Cambrid
+ge     | MA    | 51247      | USA     |                   1188 |       43400 |
+|            175 | Gift Depot Inc.              | King            | Julie            | 2035552570 | 25593 South Bay Ln.       | NULL         | Bridgew
+ater   | CT    | 97562      | USA     |                   1323 |       84300 |
+|            181 | Vitachrome Inc.              | Frick           | Michael          | 2125551500 | 2678 Kingston Rd.         | Suite 101    | NYC
+       | NY    | 10022      | USA     |                   1286 |       76400 |
+|            198 | Auto-Moto Classics Inc.      | Taylor          | Leslie           | 6175558428 | 16780 Pompton St.         | NULL         | Brickha
+ven    | MA    | 58339      | USA     |                   1216 |       23000 |
+|            204 | Online Mini Collectables     | Barajas         | Miguel           | 6175557555 | 7635 Spinnaker Dr.        | NULL         | Brickha
+ven    | MA    | 58339      | USA     |                   1188 |       68700 |
+|            205 | Toys4GrownUps.com            | Young           | Julie            | 6265557265 | 78934 Hillside Dr.        | NULL         | Pasaden
+a      | CA    | 90003      | USA     |                   1166 |       90700 |
+|            219 | Boards & Toys Co.            | Young           | Mary             | 3105552373 | 4097 Douglas Av.          | NULL         | Glendal
+e      | CA    | 92561      | USA     |                   1166 |       11000 |
+|            239 | Collectable Mini Designs Co. | Thompson        | Valarie          | 7605558146 | 361 Furth Circle          | NULL         | San Die
+go     | CA    | 91217      | USA     |                   1166 |      105000 |
+|            286 | Marta's Replicas Co.         | Hernandez       | Marta            | 6175558555 | 39323 Spinnaker Dr.       | NULL         | Cambrid
+ge     | MA    | 51247      | USA     |                   1216 |      123700 |
+|            319 | Mini Classics                | Frick           | Steve            | 9145554562 | 3758 North Pendale Street | NULL         | White P
+lains  | NY    | 24067      | USA     |                   1323 |      102700 |
+|            320 | Mini Creations Ltd.          | Huang           | Wing             | 5085559555 | 4575 Hillside Dr.         | NULL         | New Bed
+ford   | MA    | 50553      | USA     |                   1188 |       94500 |
+|            321 | Corporate Gift Ideas Co.     | Brown           | Julie            | 6505551386 | 7734 Strong St.           | NULL         | San Fra
+ncisco | CA    | 94217      | USA     |                   1165 |      105000 |
+|            328 | Tekni Collectables Inc.      | Brown           | William          | 2015559350 | 7476 Moss Rd.             | NULL         | Newark
+       | NJ    | 94019      | USA     |                   1323 |       43000 |
+|            339 | Classic Gift Ideas, Inc      | Cervantes       | Francisca        | 2155554695 | 782 First Street          | NULL         | Philade
+lphia  | PA    | 71270      | USA     |                   1188 |       81100 |
+|            347 | Men 'R' US Retailers, Ltd.   | Chandler        | Brian            | 2155554369 | 6047 Douglas Av.          | NULL         | Los Ang
+eles   | CA    | 91003      | USA     |                   1166 |       57700 |
+|            362 | Gifts4AllAges.com            | Yoshido         | Juri             | 6175559555 | 8616 Spinnaker Dr.        | NULL         | Boston
+       | MA    | 51003      | USA     |                   1216 |       41900 |
+|            363 | Online Diecast Creations Co. | Young           | Dorothy          | 6035558647 | 2304 Long Airport Avenue  | NULL         | Nashua
+       | NH    | 62005      | USA     |                   1216 |      114200 |
+|            379 | Collectables For Less Inc.   | Nelson          | Allen            | 6175558555 | 7825 Douglas Av.          | NULL         | Brickha
+ven    | MA    | 58339      | USA     |                   1188 |       70700 |
+|            424 | Classic Legends Inc.         | Hernandez       | Maria            | 2125558493 | 5905 Pompton St.          | Suite 750    | NYC
+       | NY    | 10022      | USA     |                   1286 |       67500 |
+|            447 | Gift Ideas Corp.             | Lewis           | Dan              | 2035554407 | 2440 Pompton St.          | NULL         | Glendal
+e      | CT    | 97561      | USA     |                   1323 |       49700 |
+|            450 | The Sharp Gifts Warehouse    | Frick           | Sue              | 4085553659 | 3086 Ingle Ln.            | NULL         | San Jos
+e      | CA    | 94217      | USA     |                   1165 |       77600 |
+|            455 | Super Scale Inc.             | Murphy          | Leslie           | 2035559545 | 567 North Pendale Street  | NULL         | New Hav
+en     | CT    | 97823      | USA     |                   1286 |       95400 |
+|            456 | Microscale Inc.              | Choi            | Yu               | 2125551957 | 5290 North Pendale Street | Suite 200    | NYC
+       | NY    | 10022      | USA     |                   1286 |       39800 |
+|            462 | FunGiftIdeas.com             | Benitez         | Violeta          | 5085552555 | 1785 First Street         | NULL         | New Bed
+ford   | MA    | 50553      | USA     |                   1216 |       85800 |
+|            475 | West Coast Collectables Co.  | Thompson        | Steve            | 3105553722 | 3675 Furth Circle         | NULL         | Burbank
+       | CA    | 94019      | USA     |                   1166 |       55400 |
+|            486 | Motor Mint Distributors Inc. | Salazar         | Rosa             | 2155559857 | 11328 Douglas Av.         | NULL         | Philade
+lphia  | PA    | 71270      | USA     |                   1323 |       72600 |
+|            487 | Signal Collectibles Ltd.     | Taylor          | Sue              | 4155554312 | 2793 Furth Circle         | NULL         | Brisban
+e      | CA    | 94217      | USA     |                   1165 |       60300 |
+|            495 | Diecast Collectables         | Franco          | Valarie          | 6175552555 | 6251 Ingle Ln.            | NULL         | Boston
+       | MA    | 51003      | USA     |                   1188 |       85100 |
++----------------+------------------------------+-----------------+------------------+------------+---------------------------+--------------+--------
+-------+-------+------------+---------+------------------------+-------------+
+36 rows in set (0.001 sec)
+
+MariaDB [classicmodels]>
+
+8)
+MariaDB [classicmodels]> select officecode,city,state,country from offices;
++------------+---------------+------------+-----------+
+| officecode | city          | state      | country   |
++------------+---------------+------------+-----------+
+| 1          | San Francisco | CA         | USA       |
+| 2          | Boston        | MA         | USA       |
+| 3          | NYC           | NY         | USA       |
+| 4          | Paris         | NULL       | France    |
+| 5          | Tokyo         | Chiyoda-Ku | Japan     |
+| 6          | Sydney        | NULL       | Australia |
+| 7          | London        | NULL       | UK        |
++------------+---------------+------------+-----------+
+7 rows in set (0.000 sec)
+
+MariaDB [classicmodels]>
+
+9)
+MariaDB [classicmodels]> select * from offices
+    -> order by country;
++------------+---------------+------------------+--------------------------+--------------+------------+-----------+------------+-----------+
+| officeCode | city          | phone            | addressLine1             | addressLine2 | state      | country   | postalCode | territory |
++------------+---------------+------------------+--------------------------+--------------+------------+-----------+------------+-----------+
+| 6          | Sydney        | +61 2 9264 2451  | 5-11 Wentworth Avenue    | Floor #2     | NULL       | Australia | NSW 2010   | APAC      |
+| 4          | Paris         | +33 14 723 4404  | 43 Rue Jouffroy D'abbans | NULL         | NULL       | France    | 75017      | EMEA      |
+| 5          | Tokyo         | +81 33 224 5000  | 4-1 Kioicho              | NULL         | Chiyoda-Ku | Japan     | 102-8578   | Japan     |
+| 7          | London        | +44 20 7877 2041 | 25 Old Broad Street      | Level 7      | NULL       | UK        | EC2N 1HN   | EMEA      |
+| 1          | San Francisco | +1 650 219 4782  | 100 Market Street        | Suite 300    | CA         | USA       | 94080      | NA        |
+| 2          | Boston        | +1 215 837 0825  | 1550 Court Place         | Suite 102    | MA         | USA       | 02107      | NA        |
+| 3          | NYC           | +1 212 555 3000  | 523 East 53rd Street     | apt. 5A      | NY         | USA       | 10022      | NA        |
++------------+---------------+------------------+--------------------------+--------------+------------+-----------+------------+-----------+
+7 rows in set (0.001 sec)
+
+MariaDB [classicmodels]>
+
+10)
+MariaDB [classicmodels]> select productCode,productName,buyPrice from products;
++-------------+---------------------------------------------+----------+
+| productCode | productName                                 | buyPrice |
++-------------+---------------------------------------------+----------+
+| S10_1678    | 1969 Harley Davidson Ultimate Chopper       |    48.81 |
+| S10_1949    | 1952 Alpine Renault 1300                    |    98.58 |
+| S10_2016    | 1996 Moto Guzzi 1100i                       |    68.99 |
+| S10_4698    | 2003 Harley-Davidson Eagle Drag Bike        |    91.02 |
+| S10_4757    | 1972 Alfa Romeo GTA                         |    85.68 |
+| S10_4962    | 1962 LanciaA Delta 16V                      |   103.42 |
+| S12_1099    | 1968 Ford Mustang                           |    95.34 |
+| S12_1108    | 2001 Ferrari Enzo                           |    95.59 |
+| S12_1666    | 1958 Setra Bus                              |     77.9 |
+| S12_2823    | 2002 Suzuki XREO                            |    66.27 |
+| S12_3148    | 1969 Corvair Monza                          |    89.14 |
+| S12_3380    | 1968 Dodge Charger                          |    75.16 |
+| S12_3891    | 1969 Ford Falcon                            |    83.05 |
+| S12_3990    | 1970 Plymouth Hemi Cuda                     |    31.92 |
+| S12_4473    | 1957 Chevy Pickup                           |     55.7 |
+| S12_4675    | 1969 Dodge Charger                          |    58.73 |
+| S18_1097    | 1940 Ford Pickup Truck                      |    58.33 |
+| S18_1129    | 1993 Mazda RX-7                             |    83.51 |
+| S18_1342    | 1937 Lincoln Berline                        |    60.62 |
+| S18_1367    | 1936 Mercedes-Benz 500K Special Roadster    |    24.26 |
+| S18_1589    | 1965 Aston Martin DB5                       |    65.96 |
+| S18_1662    | 1980s Black Hawk Helicopter                 |    77.27 |
+| S18_1749    | 1917 Grand Touring Sedan                    |     86.7 |
+| S18_1889    | 1948 Porsche 356-A Roadster                 |     53.9 |
+| S18_1984    | 1995 Honda Civic                            |    93.89 |
+| S18_2238    | 1998 Chrysler Plymouth Prowler              |   101.51 |
+| S18_2248    | 1911 Ford Town Car                          |     33.3 |
+| S18_2319    | 1964 Mercedes Tour Bus                      |    74.86 |
+| S18_2325    | 1932 Model A Ford J-Coupe                   |    58.48 |
+| S18_2432    | 1926 Ford Fire Engine                       |    24.92 |
+| S18_2581    | P-51-D Mustang                              |       49 |
+| S18_2625    | 1936 Harley Davidson El Knucklehead         |    24.23 |
+| S18_2795    | 1928 Mercedes-Benz SSK                      |    72.56 |
+| S18_2870    | 1999 Indy 500 Monte Carlo SS                |    56.76 |
+| S18_2949    | 1913 Ford Model T Speedster                 |    60.78 |
+| S18_2957    | 1934 Ford V8 Coupe                          |    34.35 |
+| S18_3029    | 1999 Yamaha Speed Boat                      |    51.61 |
+| S18_3136    | 18th Century Vintage Horse Carriage         |    60.74 |
+| S18_3140    | 1903 Ford Model A                           |     68.3 |
+| S18_3232    | 1992 Ferrari 360 Spider red                 |     77.9 |
+| S18_3233    | 1985 Toyota Supra                           |    57.01 |
+| S18_3259    | Collectable Wooden Train                    |    67.56 |
+| S18_3278    | 1969 Dodge Super Bee                        |    49.05 |
+| S18_3320    | 1917 Maxwell Touring Car                    |    57.54 |
+| S18_3482    | 1976 Ford Gran Torino                       |    73.49 |
+| S18_3685    | 1948 Porsche Type 356 Roadster              |    62.16 |
+| S18_3782    | 1957 Vespa GS150                            |    32.95 |
+| S18_3856    | 1941 Chevrolet Special Deluxe Cabriolet     |    64.58 |
+| S18_4027    | 1970 Triumph Spitfire                       |    91.92 |
+| S18_4409    | 1932 Alfa Romeo 8C2300 Spider Sport         |    43.26 |
+| S18_4522    | 1904 Buick Runabout                         |    52.66 |
+| S18_4600    | 1940s Ford truck                            |    84.76 |
+| S18_4668    | 1939 Cadillac Limousine                     |    23.14 |
+| S18_4721    | 1957 Corvette Convertible                   |    69.93 |
+| S18_4933    | 1957 Ford Thunderbird                       |    34.21 |
+| S24_1046    | 1970 Chevy Chevelle SS 454                  |    49.24 |
+| S24_1444    | 1970 Dodge Coronet                          |    32.37 |
+| S24_1578    | 1997 BMW R 1100 S                           |    60.86 |
+| S24_1628    | 1966 Shelby Cobra 427 S/C                   |    29.18 |
+| S24_1785    | 1928 British Royal Navy Airplane            |    66.74 |
+| S24_1937    | 1939 Chevrolet Deluxe Coupe                 |    22.57 |
+| S24_2000    | 1960 BSA Gold Star DBD34                    |    37.32 |
+| S24_2011    | 18th century schooner                       |    82.34 |
+| S24_2022    | 1938 Cadillac V-16 Presidential Limousine   |    20.61 |
+| S24_2300    | 1962 Volkswagen Microbus                    |    61.34 |
+| S24_2360    | 1982 Ducati 900 Monster                     |     47.1 |
+| S24_2766    | 1949 Jaguar XK 120                          |    47.25 |
+| S24_2840    | 1958 Chevy Corvette Limited Edition         |    15.91 |
+| S24_2841    | 1900s Vintage Bi-Plane                      |    34.25 |
+| S24_2887    | 1952 Citroen-15CV                           |    72.82 |
+| S24_2972    | 1982 Lamborghini Diablo                     |    16.24 |
+| S24_3151    | 1912 Ford Model T Delivery Wagon            |    46.91 |
+| S24_3191    | 1969 Chevrolet Camaro Z28                   |    50.51 |
+| S24_3371    | 1971 Alpine Renault 1600s                   |    38.58 |
+| S24_3420    | 1937 Horch 930V Limousine                   |     26.3 |
+| S24_3432    | 2002 Chevy Corvette                         |    62.11 |
+| S24_3816    | 1940 Ford Delivery Sedan                    |    48.64 |
+| S24_3856    | 1956 Porsche 356A Coupe                     |     98.3 |
+| S24_3949    | Corsair F4U ( Bird Cage)                    |    29.34 |
+| S24_3969    | 1936 Mercedes Benz 500k Roadster            |    21.75 |
+| S24_4048    | 1992 Porsche Cayenne Turbo Silver           |    69.78 |
+| S24_4258    | 1936 Chrysler Airflow                       |    57.46 |
+| S24_4278    | 1900s Vintage Tri-Plane                     |    36.23 |
+| S24_4620    | 1961 Chevrolet Impala                       |    32.33 |
+| S32_1268    | 1980?s GM Manhattan Express                 |    53.93 |
+| S32_1374    | 1997 BMW F650 ST                            |    66.92 |
+| S32_2206    | 1982 Ducati 996 R                           |    24.14 |
+| S32_2509    | 1954 Greyhound Scenicruiser                 |    25.98 |
+| S32_3207    | 1950's Chicago Surface Lines Streetcar      |    26.72 |
+| S32_3522    | 1996 Peterbilt 379 Stake Bed with Outrigger |    33.61 |
+| S32_4289    | 1928 Ford Phaeton Deluxe                    |    33.02 |
+| S32_4485    | 1974 Ducati 350 Mk3 Desmo                   |    56.13 |
+| S50_1341    | 1930 Buick Marquette Phaeton                |    27.06 |
+| S50_1392    | Diamond T620 Semi-Skirted Tanker            |    68.29 |
+| S50_1514    | 1962 City of Detroit Streetcar              |    37.49 |
+| S50_4713    | 2002 Yamaha YZR M1                          |    34.17 |
+| S700_1138   | The Schooner Bluenose                       |       34 |
+| S700_1691   | American Airlines: B767-300                 |    51.15 |
+| S700_1938   | The Mayflower                               |     43.3 |
+| S700_2047   | HMS Bounty                                  |    39.83 |
+| S700_2466   | America West Airlines B757-200              |     68.8 |
+| S700_2610   | The USS Constitution Ship                   |    33.97 |
+| S700_2824   | 1982 Camaro Z28                             |    46.53 |
+| S700_2834   | ATA: B757-300                               |    59.33 |
+| S700_3167   | F/A 18 Hornet 1/72                          |     54.4 |
+| S700_3505   | The Titanic                                 |    51.09 |
+| S700_3962   | The Queen Mary                              |    53.63 |
+| S700_4002   | American Airlines: MD-11S                   |    36.27 |
+| S72_1253    | Boeing X-32A JSF                            |    32.77 |
+| S72_3212    | Pont Yacht                                  |     33.3 |
++-------------+---------------------------------------------+----------+
+110 rows in set (0.035 sec)
+
+MariaDB [classicmodels]>
+
+11)
+MariaDB [classicmodels]> select buyPrice from products;
++----------+
+| buyPrice |
++----------+
+|    48.81 |
+|    98.58 |
+|    68.99 |
+|    91.02 |
+|    85.68 |
+|   103.42 |
+|    95.34 |
+|    95.59 |
+|     77.9 |
+|    66.27 |
+|    89.14 |
+|    75.16 |
+|    83.05 |
+|    31.92 |
+|     55.7 |
+|    58.73 |
+|    58.33 |
+|    83.51 |
+|    60.62 |
+|    24.26 |
+|    65.96 |
+|    77.27 |
+|     86.7 |
+|     53.9 |
+|    93.89 |
+|   101.51 |
+|     33.3 |
+|    74.86 |
+|    58.48 |
+|    24.92 |
+|       49 |
+|    24.23 |
+|    72.56 |
+|    56.76 |
+|    60.78 |
+|    34.35 |
+|    51.61 |
+|    60.74 |
+|     68.3 |
+|     77.9 |
+|    57.01 |
+|    67.56 |
+|    49.05 |
+|    57.54 |
+|    73.49 |
+|    62.16 |
+|    32.95 |
+|    64.58 |
+|    91.92 |
+|    43.26 |
+|    52.66 |
+|    84.76 |
+|    23.14 |
+|    69.93 |
+|    34.21 |
+|    49.24 |
+|    32.37 |
+|    60.86 |
+|    29.18 |
+|    66.74 |
+|    22.57 |
+|    37.32 |
+|    82.34 |
+|    20.61 |
+|    61.34 |
+|     47.1 |
+|    47.25 |
+|    15.91 |
+|    34.25 |
+|    72.82 |
+|    16.24 |
+|    46.91 |
+|    50.51 |
+|    38.58 |
+|     26.3 |
+|    62.11 |
+|    48.64 |
+|     98.3 |
+|    29.34 |
+|    21.75 |
+|    69.78 |
+|    57.46 |
+|    36.23 |
+|    32.33 |
+|    53.93 |
+|    66.92 |
+|    24.14 |
+|    25.98 |
+|    26.72 |
+|    33.61 |
+|    33.02 |
+|    56.13 |
+|    27.06 |
+|    68.29 |
+|    37.49 |
+|    34.17 |
+|       34 |
+|    51.15 |
+|     43.3 |
+|    39.83 |
+|     68.8 |
+|    33.97 |
+|    46.53 |
+|    59.33 |
+|     54.4 |
+|    51.09 |
+|    53.63 |
+|    36.27 |
+|    32.77 |
+|     33.3 |
++----------+
+110 rows in set (0.001 sec)
+
+
+12)
+MariaDB [classicmodels]> select * from products
+    -> where buyPrice>=100;
++-------------+--------------------------------+--------------+--------------+----------------------+-------------------------------------------------
+------------------------------------------------------------------------------------------------------------------+-----------------+----------+------
+--+
+| productCode | productName                    | productLine  | productScale | productVendor        | productDescription
+                                                                                                                  | quantityInStock | buyPrice | MSRP
+  |
++-------------+--------------------------------+--------------+--------------+----------------------+-------------------------------------------------
+------------------------------------------------------------------------------------------------------------------+-----------------+----------+------
+--+
+| S10_4962    | 1962 LanciaA Delta 16V         | Classic Cars | 1:10         | Second Gear Diecast  | Features include: Turnable front wheels; steerin
+g function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis. |            6791 |   103.42 | 147.7
+4 |
+| S18_2238    | 1998 Chrysler Plymouth Prowler | Classic Cars | 1:18         | Gearbox Collectibles | Turnable front wheels; steering function; detail
+ed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.                   |            4724 |   101.51 | 163.7
+3 |
++-------------+--------------------------------+--------------+--------------+----------------------+-------------------------------------------------
+------------------------------------------------------------------------------------------------------------------+-----------------+----------+------
+--+
+2 rows in set (0.001 sec)
+
+MariaDB [classicmodels]>
+
+13)
+MariaDB [classicmodels]> select productName,productCode from products
++---------------------------------------------+-------------+
+| productName                                 | productCode |
++---------------------------------------------+-------------+
+| 1969 Harley Davidson Ultimate Chopper       | S10_1678    |
+| 1952 Alpine Renault 1300                    | S10_1949    |
+| 1996 Moto Guzzi 1100i                       | S10_2016    |
+| 2003 Harley-Davidson Eagle Drag Bike        | S10_4698    |
+| 1972 Alfa Romeo GTA                         | S10_4757    |
+| 1962 LanciaA Delta 16V                      | S10_4962    |
+| 1968 Ford Mustang                           | S12_1099    |
+| 2001 Ferrari Enzo                           | S12_1108    |
+| 1958 Setra Bus                              | S12_1666    |
+| 2002 Suzuki XREO                            | S12_2823    |
+| 1969 Corvair Monza                          | S12_3148    |
+| 1968 Dodge Charger                          | S12_3380    |
+| 1969 Ford Falcon                            | S12_3891    |
+| 1970 Plymouth Hemi Cuda                     | S12_3990    |
+| 1957 Chevy Pickup                           | S12_4473    |
+| 1969 Dodge Charger                          | S12_4675    |
+| 1940 Ford Pickup Truck                      | S18_1097    |
+| 1993 Mazda RX-7                             | S18_1129    |
+| 1937 Lincoln Berline                        | S18_1342    |
+| 1936 Mercedes-Benz 500K Special Roadster    | S18_1367    |
+| 1965 Aston Martin DB5                       | S18_1589    |
+| 1980s Black Hawk Helicopter                 | S18_1662    |
+| 1917 Grand Touring Sedan                    | S18_1749    |
+| 1948 Porsche 356-A Roadster                 | S18_1889    |
+| 1995 Honda Civic                            | S18_1984    |
+| 1998 Chrysler Plymouth Prowler              | S18_2238    |
+| 1911 Ford Town Car                          | S18_2248    |
+| 1964 Mercedes Tour Bus                      | S18_2319    |
+| 1932 Model A Ford J-Coupe                   | S18_2325    |
+| 1926 Ford Fire Engine                       | S18_2432    |
+| P-51-D Mustang                              | S18_2581    |
+| 1936 Harley Davidson El Knucklehead         | S18_2625    |
+| 1928 Mercedes-Benz SSK                      | S18_2795    |
+| 1999 Indy 500 Monte Carlo SS                | S18_2870    |
+| 1913 Ford Model T Speedster                 | S18_2949    |
+| 1934 Ford V8 Coupe                          | S18_2957    |
+| 1999 Yamaha Speed Boat                      | S18_3029    |
+| 18th Century Vintage Horse Carriage         | S18_3136    |
+| 1903 Ford Model A                           | S18_3140    |
+| 1992 Ferrari 360 Spider red                 | S18_3232    |
+| 1985 Toyota Supra                           | S18_3233    |
+| Collectable Wooden Train                    | S18_3259    |
+| 1969 Dodge Super Bee                        | S18_3278    |
+| 1917 Maxwell Touring Car                    | S18_3320    |
+| 1976 Ford Gran Torino                       | S18_3482    |
+| 1948 Porsche Type 356 Roadster              | S18_3685    |
+| 1957 Vespa GS150                            | S18_3782    |
+| 1941 Chevrolet Special Deluxe Cabriolet     | S18_3856    |
+| 1970 Triumph Spitfire                       | S18_4027    |
+| 1932 Alfa Romeo 8C2300 Spider Sport         | S18_4409    |
+| 1904 Buick Runabout                         | S18_4522    |
+| 1940s Ford truck                            | S18_4600    |
+| 1939 Cadillac Limousine                     | S18_4668    |
+| 1957 Corvette Convertible                   | S18_4721    |
+| 1957 Ford Thunderbird                       | S18_4933    |
+| 1970 Chevy Chevelle SS 454                  | S24_1046    |
+| 1970 Dodge Coronet                          | S24_1444    |
+| 1997 BMW R 1100 S                           | S24_1578    |
+| 1966 Shelby Cobra 427 S/C                   | S24_1628    |
+| 1928 British Royal Navy Airplane            | S24_1785    |
+| 1939 Chevrolet Deluxe Coupe                 | S24_1937    |
+| 1960 BSA Gold Star DBD34                    | S24_2000    |
+| 18th century schooner                       | S24_2011    |
+| 1938 Cadillac V-16 Presidential Limousine   | S24_2022    |
+| 1962 Volkswagen Microbus                    | S24_2300    |
+| 1982 Ducati 900 Monster                     | S24_2360    |
+| 1949 Jaguar XK 120                          | S24_2766    |
+| 1958 Chevy Corvette Limited Edition         | S24_2840    |
+| 1900s Vintage Bi-Plane                      | S24_2841    |
+| 1952 Citroen-15CV                           | S24_2887    |
+| 1982 Lamborghini Diablo                     | S24_2972    |
+| 1912 Ford Model T Delivery Wagon            | S24_3151    |
+| 1969 Chevrolet Camaro Z28                   | S24_3191    |
+| 1971 Alpine Renault 1600s                   | S24_3371    |
+| 1937 Horch 930V Limousine                   | S24_3420    |
+| 2002 Chevy Corvette                         | S24_3432    |
+| 1940 Ford Delivery Sedan                    | S24_3816    |
+| 1956 Porsche 356A Coupe                     | S24_3856    |
+| Corsair F4U ( Bird Cage)                    | S24_3949    |
+| 1936 Mercedes Benz 500k Roadster            | S24_3969    |
+| 1992 Porsche Cayenne Turbo Silver           | S24_4048    |
+| 1936 Chrysler Airflow                       | S24_4258    |
+| 1900s Vintage Tri-Plane                     | S24_4278    |
+| 1961 Chevrolet Impala                       | S24_4620    |
+| 1980?s GM Manhattan Express                 | S32_1268    |
+| 1997 BMW F650 ST                            | S32_1374    |
+| 1982 Ducati 996 R                           | S32_2206    |
+| 1954 Greyhound Scenicruiser                 | S32_2509    |
+| 1950's Chicago Surface Lines Streetcar      | S32_3207    |
+| 1996 Peterbilt 379 Stake Bed with Outrigger | S32_3522    |
+| 1928 Ford Phaeton Deluxe                    | S32_4289    |
+| 1974 Ducati 350 Mk3 Desmo                   | S32_4485    |
+| 1930 Buick Marquette Phaeton                | S50_1341    |
+| Diamond T620 Semi-Skirted Tanker            | S50_1392    |
+| 1962 City of Detroit Streetcar              | S50_1514    |
+| 2002 Yamaha YZR M1                          | S50_4713    |
+| The Schooner Bluenose                       | S700_1138   |
+| American Airlines: B767-300                 | S700_1691   |
+| The Mayflower                               | S700_1938   |
+| HMS Bounty                                  | S700_2047   |
+| America West Airlines B757-200              | S700_2466   |
+| The USS Constitution Ship                   | S700_2610   |
+| 1982 Camaro Z28                             | S700_2824   |
+| ATA: B757-300                               | S700_2834   |
+| F/A 18 Hornet 1/72                          | S700_3167   |
+| The Titanic                                 | S700_3505   |
+| The Queen Mary                              | S700_3962   |
+| American Airlines: MD-11S                   | S700_4002   |
+| Boeing X-32A JSF                            | S72_1253    |
+| Pont Yacht                                  | S72_3212    |
++---------------------------------------------+-------------+
+110 rows in set (0.000 sec)
+
+MariaDB [classicmodels]> update products
+    -> set productName='Ford falcon BD'
+    -> where productCode=S12_3891;
+ERROR 1054 (42S22): Unknown column 'S12_3891' in 'where clause'
+MariaDB [classicmodels]> update products
+    -> set productName='Ford Falcon'
+    -> where productCode='S12_3891';
+Query OK, 1 row affected (0.041 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+14)
+MariaDB [classicmodels]> select productName,productCode from products;
++---------------------------------------------+-------------+
+| productName                                 | productCode |
++---------------------------------------------+-------------+
+| 1969 Harley Davidson Ultimate Chopper       | S10_1678    |
+| 1952 Alpine Renault 1300                    | S10_1949    |
+| 1996 Moto Guzzi 1100i                       | S10_2016    |
+| 2003 Harley-Davidson Eagle Drag Bike        | S10_4698    |
+| 1972 Alfa Romeo GTA                         | S10_4757    |
+| 1962 LanciaA Delta 16V                      | S10_4962    |
+| 1968 Ford Mustang                           | S12_1099    |
+| 2001 Ferrari Enzo                           | S12_1108    |
+| 1958 Setra Bus                              | S12_1666    |
+| 2002 Suzuki XREO                            | S12_2823    |
+| 1969 Corvair Monza                          | S12_3148    |
+| 1968 Dodge Charger                          | S12_3380    |
+| Ford Falcon Bd                              | S12_3891    |
+| 1970 Plymouth Hemi Cuda                     | S12_3990    |
+| 1957 Chevy Pickup                           | S12_4473    |
+| 1969 Dodge Charger                          | S12_4675    |
+| 1940 Ford Pickup Truck                      | S18_1097    |
+| 1993 Mazda RX-7                             | S18_1129    |
+| 1937 Lincoln Berline                        | S18_1342    |
+| 1936 Mercedes-Benz 500K Special Roadster    | S18_1367    |
+| 1965 Aston Martin DB5                       | S18_1589    |
+| 1980s Black Hawk Helicopter                 | S18_1662    |
+| 1917 Grand Touring Sedan                    | S18_1749    |
+| 1948 Porsche 356-A Roadster                 | S18_1889    |
+| 1995 Honda Civic                            | S18_1984    |
+| 1998 Chrysler Plymouth Prowler              | S18_2238    |
+| 1911 Ford Town Car                          | S18_2248    |
+| 1964 Mercedes Tour Bus                      | S18_2319    |
+| 1932 Model A Ford J-Coupe                   | S18_2325    |
+| 1926 Ford Fire Engine                       | S18_2432    |
+| P-51-D Mustang                              | S18_2581    |
+| 1936 Harley Davidson El Knucklehead         | S18_2625    |
+| 1928 Mercedes-Benz SSK                      | S18_2795    |
+| 1999 Indy 500 Monte Carlo SS                | S18_2870    |
+| 1913 Ford Model T Speedster                 | S18_2949    |
+| 1934 Ford V8 Coupe                          | S18_2957    |
+| 1999 Yamaha Speed Boat                      | S18_3029    |
+| 18th Century Vintage Horse Carriage         | S18_3136    |
+| 1903 Ford Model A                           | S18_3140    |
+| 1992 Ferrari 360 Spider red                 | S18_3232    |
+| 1985 Toyota Supra                           | S18_3233    |
+| Collectable Wooden Train                    | S18_3259    |
+| 1969 Dodge Super Bee                        | S18_3278    |
+| 1917 Maxwell Touring Car                    | S18_3320    |
+| 1976 Ford Gran Torino                       | S18_3482    |
+| 1948 Porsche Type 356 Roadster              | S18_3685    |
+| 1957 Vespa GS150                            | S18_3782    |
+| 1941 Chevrolet Special Deluxe Cabriolet     | S18_3856    |
+| 1970 Triumph Spitfire                       | S18_4027    |
+| 1932 Alfa Romeo 8C2300 Spider Sport         | S18_4409    |
+| 1904 Buick Runabout                         | S18_4522    |
+| 1940s Ford truck                            | S18_4600    |
+| 1939 Cadillac Limousine                     | S18_4668    |
+| 1957 Corvette Convertible                   | S18_4721    |
+| 1957 Ford Thunderbird                       | S18_4933    |
+| 1970 Chevy Chevelle SS 454                  | S24_1046    |
+| 1970 Dodge Coronet                          | S24_1444    |
+| 1997 BMW R 1100 S                           | S24_1578    |
+| 1966 Shelby Cobra 427 S/C                   | S24_1628    |
+| 1928 British Royal Navy Airplane            | S24_1785    |
+| 1939 Chevrolet Deluxe Coupe                 | S24_1937    |
+| 1960 BSA Gold Star DBD34                    | S24_2000    |
+| 18th century schooner                       | S24_2011    |
+| 1938 Cadillac V-16 Presidential Limousine   | S24_2022    |
+| 1962 Volkswagen Microbus                    | S24_2300    |
+| 1982 Ducati 900 Monster                     | S24_2360    |
+| 1949 Jaguar XK 120                          | S24_2766    |
+| 1958 Chevy Corvette Limited Edition         | S24_2840    |
+| 1900s Vintage Bi-Plane                      | S24_2841    |
+| 1952 Citroen-15CV                           | S24_2887    |
+| 1982 Lamborghini Diablo                     | S24_2972    |
+| 1912 Ford Model T Delivery Wagon            | S24_3151    |
+| 1969 Chevrolet Camaro Z28                   | S24_3191    |
+| 1971 Alpine Renault 1600s                   | S24_3371    |
+| 1937 Horch 930V Limousine                   | S24_3420    |
+| 2002 Chevy Corvette                         | S24_3432    |
+| 1940 Ford Delivery Sedan                    | S24_3816    |
+| 1956 Porsche 356A Coupe                     | S24_3856    |
+| Corsair F4U ( Bird Cage)                    | S24_3949    |
+| 1936 Mercedes Benz 500k Roadster            | S24_3969    |
+| 1992 Porsche Cayenne Turbo Silver           | S24_4048    |
+| 1936 Chrysler Airflow                       | S24_4258    |
+| 1900s Vintage Tri-Plane                     | S24_4278    |
+| 1961 Chevrolet Impala                       | S24_4620    |
+| 1980?s GM Manhattan Express                 | S32_1268    |
+| 1997 BMW F650 ST                            | S32_1374    |
+| 1982 Ducati 996 R                           | S32_2206    |
+| 1954 Greyhound Scenicruiser                 | S32_2509    |
+| 1950's Chicago Surface Lines Streetcar      | S32_3207    |
+| 1996 Peterbilt 379 Stake Bed with Outrigger | S32_3522    |
+| 1928 Ford Phaeton Deluxe                    | S32_4289    |
+| 1974 Ducati 350 Mk3 Desmo                   | S32_4485    |
+| 1930 Buick Marquette Phaeton                | S50_1341    |
+| Diamond T620 Semi-Skirted Tanker            | S50_1392    |
+| 1962 City of Detroit Streetcar              | S50_1514    |
+| 2002 Yamaha YZR M1                          | S50_4713    |
+| The Schooner Bluenose                       | S700_1138   |
+| American Airlines: B767-300                 | S700_1691   |
+| The Mayflower                               | S700_1938   |
+| HMS Bounty                                  | S700_2047   |
+| America West Airlines B757-200              | S700_2466   |
+| The USS Constitution Ship                   | S700_2610   |
+| 1982 Camaro Z28                             | S700_2824   |
+| ATA: B757-300                               | S700_2834   |
+| F/A 18 Hornet 1/72                          | S700_3167   |
+| The Titanic                                 | S700_3505   |
+| The Queen Mary                              | S700_3962   |
+| American Airlines: MD-11S                   | S700_4002   |
+| Boeing X-32A JSF                            | S72_1253    |
+| Pont Yacht                                  | S72_3212    |
++---------------------------------------------+-------------+
+110 rows in set (0.000 sec)
+
+MariaDB [classicmodels]>
+
+
+15)
+MariaDB [classicmodels]> select * from employees
+    -> where lastName like 'b%';
++----------------+----------+-----------+-----------+------------------------------+------------+-----------+---------------------+
+| employeeNumber | lastName | firstName | extension | email                        | officeCode | reportsTo | jobTitle            |
++----------------+----------+-----------+-----------+------------------------------+------------+-----------+---------------------+
+|           1102 | Bondur   | Gerard    | x5408     | gbondur@classicmodelcars.com | 4          |      1056 | Sale Manager (EMEA) |
+|           1143 | Bow      | Anthony   | x5428     | abow@classicmodelcars.com    | 1          |      1056 | Sales Manager (NA)  |
+|           1337 | Bondur   | Loui      | x6493     | lbondur@classicmodelcars.com | 4          |      1102 | Sales Rep           |
+|           1501 | Bott     | Larry     | x2311     | lbott@classicmodelcars.com   | 7          |      1102 | Sales Rep           |
++----------------+----------+-----------+-----------+------------------------------+------------+-----------+---------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [classicmodels]>
